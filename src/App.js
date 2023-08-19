@@ -11,7 +11,7 @@ import {
 const App = () => {
   return (
     <BrowserRouter>
-      <Box>
+      <Box className="back">
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Feed />} />
