@@ -17,11 +17,10 @@ const Feed = () => {
         method: "GET",
         url: "https://youtube-v31.p.rapidapi.com/search",
         params: {
-          q: "music",
-          part: "snippet,id",
-          regionCode: "US",
+          q: `${selectedCategory}`,
+          part: "snippet",
+
           maxResults: "50",
-          order: "date",
         },
         headers: {
           "X-RapidAPI-Key":
@@ -31,7 +30,8 @@ const Feed = () => {
       };
       try {
         const response = await axios.request(options);
-        console.log(response.data.items);
+        // console.log(response.data.items);
+        setVideos(response.data.items);
       } catch (error) {
         console.error(error);
       }
