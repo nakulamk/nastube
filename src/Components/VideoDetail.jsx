@@ -41,35 +41,35 @@ const VideoDetail = () => {
     // fetchRelatedVideos();
   }, [id]);
 
-  console.log(videoDetail);
+  console.log(videoDetail?.snippet?.description);
 
-  // useEffect(() => {
-  //   const APIfetchData = async () => {
-  //     const options = {
-  //       method: "GET",
-  //       url: "https://youtube-v31.p.rapidapi.com/search",
-  //       params: {
-  //         q: `${videoDetail.snippet.title}`,
-  //         part: "snippet",
+  useEffect(() => {
+    const APIfetchData = async () => {
+      const options = {
+        method: "GET",
+        url: "https://youtube-v31.p.rapidapi.com/search",
+        params: {
+          q: `${videoDetail.snippet.title}`,
+          part: "snippet",
 
-  //         maxResults: "50",
-  //       },
-  //       headers: {
-  //         "X-RapidAPI-Key":
-  //           "dfe3ce08eamsh9551c900a1b755ep1dc34cjsna7155636dc66",
-  //         "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
-  //       },
-  //     };
-  //     try {
-  //       const response = await axios.request(options);
-  //       // console.log(response.data.items);
-  //       setVideos(response.data.items);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   APIfetchData();
-  // });
+          maxResults: "50",
+        },
+        headers: {
+          "X-RapidAPI-Key":
+            "dfe3ce08eamsh9551c900a1b755ep1dc34cjsna7155636dc66",
+          "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+        },
+      };
+      try {
+        const response = await axios.request(options);
+        // console.log(response.data.items);
+        setVideos(response.data.items);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    APIfetchData();
+  });
   if (!videoDetail?.snippet) return <Loader />;
 
   const {
